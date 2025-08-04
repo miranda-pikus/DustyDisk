@@ -1,0 +1,56 @@
+# General Appearance
+figure.figsize: 8, 6              # Default figure size in inches
+figure.dpi: 100                   # Dots per inch of the figure
+savefig.dpi: 300                  # DPI for saving figures
+figure.facecolor: white          # Background color of the figure
+figure.edgecolor: white          # Edge color of the figure
+
+# axes
+axes.titlesize: 18               # Font size of the axes title
+axes.labelsize: 16               # Font size of the x and y labels
+axes.labelweight: normal           # Weight of the axis labels
+axes.titleweight: bold           # Weight of the title
+axes.grid: False                  # Show grid by default
+axes.facecolor: white            # Axes background color
+axes.edgecolor: black            # Axes edge color
+axes.spines.top: False           # Remove top spine
+axes.spines.right: False         # Remove right spine
+
+# ticks
+xtick.labelsize: 12              # Font size of x-axis tick labels
+ytick.labelsize: 12              # Font size of y-axis tick labels
+xtick.direction: in              # Tick mark direction for x-axis
+ytick.direction: in              # Tick mark direction for y-axis
+xtick.major.size: 8              # Major tick size (x-axis)
+ytick.major.size: 8              # Major tick size (y-axis)
+xtick.minor.size: 5              # Minor tick size (x-axis)
+ytick.minor.size: 5              # Minor tick size (y-axis)
+
+# lines and markers
+lines.linewidth: 3               # Width of plotted lines
+lines.markersize: 6              # Default marker size
+lines.markeredgewidth: 1         # Width of marker edges
+
+# colors
+
+# legend
+legend.loc: best                 # Default legend location
+legend.fontsize: 12              # Legend font size
+legend.frameon: True             # Draw a frame around the legend
+legend.facecolor: white          # Background color of the legend
+legend.edgecolor: black          # Edge color of the legend box
+
+# font
+font.size: 15                    # Base font size
+font.family: serif        # Font family
+font.sans-serif: Helvetica     # Preferred sans-serif font
+
+# save fig
+savefig.transparent: False       # Whether to make saved figures transparent
+savefig.facecolor: white         # Background color for saved figures
+savefig.edgecolor: white         # Edge color for saved figures
+
+# grid
+grid.color: gray                 # Color of the grid lines
+grid.linestyle: --               # Style of grid lines
+grid.linewidth: 0.5              # Width of grid lines
