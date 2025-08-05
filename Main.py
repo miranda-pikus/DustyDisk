@@ -22,9 +22,6 @@ class Grid():
         self.Tgas = Tgas 
         #self.unit_type = unit_type # unit system (string)
         self.grain_size = grain_size
-        
-        
-
         # sound speed
         Cs = np.sqrt(Constants.k_B * Tgas * (radius/Constants.AU))**(-0.5) / (mu_gas*Constants.m_H) # cm/s
         # keplerian angular velocity
@@ -32,6 +29,7 @@ class Grid():
         # keplerian velocity
         self.v_K = Omega_K * radius
         H = Cs / Omega_K
+
         self.rho_g = self.sigma_gas /(np.sqrt(2*np.pi)*H)
 
         
@@ -44,6 +42,7 @@ class Grid():
     def vdrift(self):
         eta = -0.5 *self.radius* self.dpdr / (self.rho_g * self.v_K**2) 
         v_drift= -2 * eta * self.v_K * self.St / (1 + self.St**2)
+
         return v_drift
    
 
