@@ -1,4 +1,4 @@
-lf.import numpy as np
+import numpy as np
 import Constants 
 
 class Grid():
