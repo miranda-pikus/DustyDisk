@@ -7,7 +7,7 @@ figure.edgecolor: white          # Edge color of the figure
 
 # axes
 axes.titlesize: 18               # Font size of the axes title
-axes.labelsize: 16               # Font size of the x and y labels
+axes.labelsize: 12              # Font size of the x and y labels
 axes.labelweight: normal           # Weight of the axis labels
 axes.titleweight: bold           # Weight of the title
 axes.grid: False                  # Show grid by default
