@@ -26,17 +26,17 @@ class Grid():
         
 
         # sound speed
-        Cs = np.sqrt(Constants.k_B * Tgas * (radius/Constants.AU))**(-0.5) / (mu_gas*Constants.m_H) # cm/s
+        self.Cs = np.sqrt(Constants.k_B * Tgas * (radius/Constants.AU))**(-0.5) / (mu_gas*Constants.m_H) # cm/s
         # keplerian angular velocity
         Omega_K = np.sqrt(Constants.G * Mstar / radius**3)
         # keplerian velocity
         self.v_K = Omega_K * radius
-        H = Cs / Omega_K
+        H = self.Cs / Omega_K
         self.rho_g = self.sigma_gas /(np.sqrt(2*np.pi)*H)
 
         
         # pressure
-        self.Pressure =self.rho_g * Cs **2
+        self.Pressure =self.rho_g * self.Cs **2
         self.St = (np.pi / 2) * Constants.rho_s * self.grain_size / sigma_gas
         self.dpdr = np.gradient(self.Pressure, self.radius)
 
