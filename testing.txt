@@ -1,5 +1,0 @@
-this is a test to make sure I know how to commit to the git repo 
-make another change! will it work?
-
-
-I think it works!
