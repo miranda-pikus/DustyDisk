@@ -7,15 +7,17 @@ def PlotGasDensity(whichGrid, which_ax):
     which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.sigma_gas, 
                   color='blue', label='gas density')
     which_ax.set_ylabel(r'density (g cm$^{-3}$)')
+    which_ax.set_yscale('log')
 
 def PlotGasPressure(whichGrid, which_ax):
     which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.Pressure, 
                   color='forestgreen', label='gas pressure')
     which_ax.set_ylabel(r'pressure (dyne)')
+    which_ax.set_yscale('log')
 
 def PlotDriftVelocity(whichGrid, which_ax):
-    which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.v_drift, 
-                  color='purple', label='drift velocity')
+    which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.vdrift(), 
+                  color='purple', label='dust drift velocity')
     which_ax.set_ylabel(r'v$_{drift}$ (cm/s)')
 
 def PlotDustDensity(whichGrid, which_ax):
@@ -35,20 +37,25 @@ def PlotQuantity(theGrid, which_Qs):
     '''
     fig, ax = plt.subplots(len(which_Qs),1, figsize=(8,2*len(which_Qs)))
     for qi, q in enumerate(which_Qs):
+
+        if len(which_Qs) == 1:
+            axi = ax
+        else:
+            axi = ax[qi]
+
         if q == 'Gas_Density':
-            PlotGasDensity(theGrid, ax[qi])
+            PlotGasDensity(theGrid, axi)
         elif q == 'Gas_Pressure':
-            PlotGasPressure(theGrid, ax[qi])
+            PlotGasPressure(theGrid, axi)
         elif q == 'Drift_Velocity':
-            PlotDriftVelocity(theGrid, ax[qi])
+            PlotDriftVelocity(theGrid, axi)
         elif q == 'Dust_Density':
-            PlotDustDensity(theGrid, ax[qi])
-        
-    for axi in ax:
+            PlotDustDensity(theGrid, axi)
+
         axi.legend()
         axi.grid()
         axi.set_xlabel('radius [AU]')
-        axi.set_yscale('log')
+   
     plt.show()
 
 

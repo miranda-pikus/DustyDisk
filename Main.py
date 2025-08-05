@@ -36,7 +36,8 @@ class Grid():
         
         # pressure
         self.Pressure =self.rho_g * self.Cs **2
-        self.St = (np.pi / 2) * Constants.rho_s * self.grain_size / sigma_gas
+        rho_s = 3 # dust grain density in cm
+        self.St = (np.pi / 2) * rho_s * self.grain_size / sigma_gas
         self.dpdr = np.gradient(self.Pressure, self.radius)
 
         
