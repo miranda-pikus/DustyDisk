@@ -28,13 +28,18 @@ class Grid():
         # keplerian angular velocity
         Omega_K = np.sqrt(Constants.G * Mstar / radius**3)
         # keplerian velocity
-        v_K = Omega_K * radius
+        self.v_K = Omega_K * radius
         H = Cs / Omega_K
         
         # pressure
         self.Pressure =rho_g * Cs **2
         self.St = (np.pi / 2) * rho_s * s / sigma_gas
-        self.v_drift = -2 * eta * v_K * St / (1 + St**2)
+        self.dpdr = np.gradient(self.Pressure, self.radius)
+    def vdrift(self):
+        eta = -0.5 *self.radius* self.dpdr / (self.rho_g * self.v_K**2) 
+        v_drift= -2 * eta * v_K * St / (1 + St**2)
+        return v_drift
+   
 
 
 def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
