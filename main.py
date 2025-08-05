@@ -1,4 +1,4 @@
-import numpy as np
+lf.import numpy as np
 import Constants 
 
 class Grid():
@@ -33,7 +33,7 @@ class Grid():
         
         # pressure
         self.Pressure =rho_g * Cs **2
-        St = (np.pi / 2) * rho_s * s / sigma_gas
+        self.St = (np.pi / 2) * rho_s * s / sigma_gas
         self.v_drift = -2 * eta * v_K * St / (1 + St**2)
 
 
