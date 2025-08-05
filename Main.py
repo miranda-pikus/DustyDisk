@@ -15,6 +15,7 @@ class Grid():
             Tgas (array) : gas temperature
             mu_gas (float) : mean molecular weight of gas
             Mstar (float) : mass of central star
+            grain_size : size of grain in cm
             unit_type (string) : unit system (cgs everywhere for now)
         '''
         self.radius = radius 
