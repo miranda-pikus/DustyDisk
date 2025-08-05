@@ -6,7 +6,7 @@ class Grid():
     class that represents the grid that gets initialized by the user with
     an input radius, gas density, and gas temperature profile
     '''
-    def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, unit_type):
+    def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size, unit_type):
         '''
         Args: 
             radius (array) : radial profile
@@ -20,6 +20,8 @@ class Grid():
         self.sigma_gas = sigma_gas 
         self.Tgas = Tgas 
         #self.unit_type = unit_type # unit system (string)
+        self.grain = grain_size
+        self.rho_g = sigma_g /(np.sqrt(2*np.pi)*H)
 
         # sound speed
         Cs = np.sqrt(Constants.k_B * Tgas * (radius/Constants.AU))**(-0.5) / (mu_gas*Constants.m_H) # cm/s
@@ -27,11 +29,15 @@ class Grid():
         Omega_K = np.sqrt(Constants.G * Mstar / radius**3)
         # keplerian velocity
         v_K = Omega_K * radius
+        H = Cs / Omega_K
+        
         # pressure
-        self.Pressure = sigma_gas * Cs * Omega_K / np.sqrt(2*np.pi)
+        self.Pressure =rho_g * Cs **2
+        St = (np.pi / 2) * rho_s * s / sigma_gas
+        self.v_drift = -2 * eta * v_K * St / (1 + St**2)
 
 
-def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, unit_type='cgs'):
+def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
     '''
     Args: 
         radius (array of floats) -- radius distribution
@@ -39,5 +45,5 @@ def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, unit_type='cgs'):
         Tgas (array of floats) -- gas temperature 
     Returns: theGrid (Grid) with user-input radius, sigma_gas, Tgas
     '''
-    theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, unit_type)
+    theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type)
     return theGrid
