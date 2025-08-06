@@ -1,3 +1,4 @@
+LICENSE
 README.md
 pyproject.toml
 DustyDisk/Constants.py
@@ -9,3 +10,4 @@ DustyDisk.egg-info/SOURCES.txt
 DustyDisk.egg-info/dependency_links.txt
 DustyDisk.egg-info/requires.txt
 DustyDisk.egg-info/top_level.txt
+docs/conf.py
