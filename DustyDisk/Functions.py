@@ -9,6 +9,8 @@ class Grid():
     '''
     def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size, unit_type, dt=1e8, t_final =1e12):
         '''
+        Initializes a Grid object
+
         Args: 
             radius (array) : radial profile
             sigma_gas (array) : gas density
@@ -16,6 +18,21 @@ class Grid():
             mu_gas (float) : mean molecular weight of gas
             Mstar (float) : mass of central star
             unit_type (string) : unit system (cgs everywhere for now)
+
+        Attributes: 
+            radius 
+            sigma_gas
+            Tgas
+            dt
+            t_fin
+            Nt
+            grain_size
+            Cs : sound speed
+            v_K : keplerian velocity
+            rho_g
+            Pressure
+            St
+            dpdr : pressure gradient 
         '''
         self.radius = radius 
         self.sigma_gas = sigma_gas 
@@ -75,11 +92,16 @@ class Grid():
 
 def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
     '''
+    Initialize the environment to be handled by DustyDisk package.
+    Depends on the user-defined input such as density, temperature, grain size, etc...
+
     Args: 
-        radius (array of floats) -- radius distribution
-        sigma_gas (array of floats) -- surface gas density 
-        Tgas (array of floats) -- gas temperature 
-    Returns: theGrid (Grid) with user-input radius, sigma_gas, Tgas
+        radius (array): numpy vector. Radius values in the domain.
+        sigma_gas (array) -- surface gas density 
+        Tgas (array) -- gas temperature 
+
+    Returns: 
+        Grid: object that uses the density and temperature profiles for other calculations
     '''
     theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type,dt=1e9, t_final=1e12)
     return theGrid
