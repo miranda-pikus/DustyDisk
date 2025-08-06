@@ -19,8 +19,8 @@ root_doc = 'index'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'spihnx.ext.autodoc',
-    'sphinx.ext.napolean'
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon'
 ]
 
 templates_path = ['_templates']
