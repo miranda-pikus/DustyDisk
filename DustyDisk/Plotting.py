@@ -102,15 +102,20 @@ def PlotSpherical2D_DustImage(theGrid, cutfrac=0, colormap='plasma'):
     R_index[R_index >= N] = N-1
     DustDensityImage = theGrid.dust_density()[R_index]
     rmax_AU = np.max(theGrid.radius)/Constants.AU
-    #plt.figure(figsize=(6,6))
-    cutfrac = .5 # cut 50% of the domain in both directions to zoom in on the dust accumulation
-    cut_i = int(cutfrac*N)
+    # cutfrac is X% of the domain in both directions to zoom in on the dust accumulation
+    if cutfrac == 0.:
+        final_img = DustDensityImage
+    else: 
+        cut_i = int(cutfrac*N)
+        final_img = DustDensityImage[cut_i:-cut_i, cut_i:-cut_i]
+    
     #print(DustDensityImage[cut_i:-cut_i, cut_i:-cut_i].shape)
-    plt.imshow(DustDensityImage[cut_i:-cut_i, cut_i:-cut_i], 
+    plt.figure()
+    plt.imshow(final_img, 
             extent=[-rmax_AU*(1-cutfrac), rmax_AU*(1-cutfrac), -rmax_AU*(1-cutfrac), rmax_AU*(1-cutfrac)],
             cmap='plasma')
     plt.colorbar()
     plt.xlabel('radius [AU]')
     plt.ylabel('radius [AU]')
-    plt.annotate('normalized dust density for toyGrid', xy=(.05, 1.02), xycoords='axes fraction')
+    plt.annotate('norm. dust density, grain size: %.1e'%theGrid.grain_size, xy=(.05, 1.02), xycoords='axes fraction')
 
