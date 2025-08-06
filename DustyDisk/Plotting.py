@@ -1,27 +1,56 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from DustyDisk.Functions import Grid
 import DustyDisk.Constants as Constants
 #plt.style.use('./PlotStyling.mplstyle')
 
-def PlotGasDensity(whichGrid, which_ax):
+def PlotGasDensity(whichGrid, which_ax, color='purple',label='gas density'):
+    '''
+    Args:
+        whichGrid (Grid) : the grid class to plot
+        which_ax (ax) : axes object to put plot on
+        color (string): color of line
+        label (string): label of line
+    '''
     which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.sigma_gas, 
-                  color='blue', label='gas density')
+                  color=color, label=label)
     which_ax.set_ylabel(r'density (g cm$^{-3}$)')
 
-def PlotGasPressure(whichGrid, which_ax):
+def PlotGasPressure(whichGrid, which_ax, color='orange',label='gas pressure'):
+    '''
+    Args:
+        whichGrid (Grid) : the grid class to plot
+        which_ax (ax) : axes object to put plot on
+        color (string): color of line
+        label (string): label of line
+    '''
     which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.Pressure, 
-                  color='forestgreen', label='gas pressure')
+                  color=color, label=label)
     which_ax.set_ylabel(r'pressure (dyne)')
 
-def PlotDriftVelocity(whichGrid, which_ax):
-    which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.v_drift, 
-                  color='purple', label='drift velocity')
+def PlotDriftVelocity(whichGrid, which_ax, color='forestgreen', label='drift velocity'):
+    '''
+    Args:
+        whichGrid (Grid) : the grid class to plot
+        which_ax (ax) : axes object to put plot on
+        color (string): color of line
+        label (string): label of line
+    '''
+    which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.vdrift(), 
+                  color=color, label=label)
     which_ax.set_ylabel(r'v$_{drift}$ (cm/s)')
 
-def PlotDustDensity(whichGrid, which_ax):
-    which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.rho_dust, 
-                    color='black', label='dust density')
-    which_ax.set_ylabel(r'density (g cm$^{-3}$)')
+def PlotDustDensity(whichGrid, which_ax, color='black', label='dust density'):
+    '''
+    Args:
+        whichGrid (Grid) : the grid class to plot
+        which_ax (ax) : axes object to put plot on
+        color (string): color of line
+        label (string): label of line
+    '''
+    which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.dust_density(), 
+                    color=color, label=label)
+    which_ax.set_ylabel(r'norm. dust density (g cm$^{-3}$)')
 
 
 def PlotQuantity(theGrid, which_Qs):
@@ -52,24 +81,36 @@ def PlotQuantity(theGrid, which_Qs):
     plt.show()
 
 
-def Spherical2D_DustImage(theGrid):
+def PlotSpherical2D_DustImage(theGrid, cutfrac=0, colormap='plasma'):
+    '''
+    Plots a 2D Image extrapolated from the 1D calculation for dust image assuming spherical symmetry.
+    Args:
+        theGrid (Grid) : the input Grid() model
+        cutfrac (float): the fraction of the domain that you wish to cut out of the image 
+                            (e.g. cutfrac=0.4 cuts 40% of the domain off both ends)
+        colormap (string): the desired color map scheme to be used in image
 
     '''
-    for when dust density is added
-    rmax = 1
-    N = 150
-    rvals = np.linspace(0, rmax, N)
-    height = 1
-    width = .01*height
-    pos = rmax*0.6
-    rhodust = height * np.exp(-(rvals-pos)**2/(2*width**2))
-    x = np.linspace(0, rmax, N)
-    y = np.linspace(0, rmax, N)
-    X,Y= np.meshgrid(x,y,indexing='ij')
+    N = len(theGrid.radius)
+    xvals = np.arange(-N, N)
+    yvals = np.arange(-N, N)
+    X, Y = np.meshgrid(xvals, yvals)
     R = np.sqrt(X**2 + Y**2)
-    RhoDust = height * np.exp(-(R-pos)**2/(2*width**2))
-    plt.plot(rvals, rhodust)
-    plt.figure()
-    plt.imshow(RhoDust, extent=[0,rmax,0,rmax], norm='log',origin='lower',cmap='Blues')
+    # convert the radial array into 1D coordinates
+    R_index = R.astype(int)
+    # if any indices are over, force them to be one less
+    R_index[R_index >= N] = N-1
+    DustDensityImage = theGrid.dust_density()[R_index]
+    rmax_AU = np.max(theGrid.radius)/Constants.AU
+    #plt.figure(figsize=(6,6))
+    cutfrac = .5 # cut 50% of the domain in both directions to zoom in on the dust accumulation
+    cut_i = int(cutfrac*N)
+    #print(DustDensityImage[cut_i:-cut_i, cut_i:-cut_i].shape)
+    plt.imshow(DustDensityImage[cut_i:-cut_i, cut_i:-cut_i], 
+            extent=[-rmax_AU*(1-cutfrac), rmax_AU*(1-cutfrac), -rmax_AU*(1-cutfrac), rmax_AU*(1-cutfrac)],
+            cmap='plasma')
     plt.colorbar()
-    '''
+    plt.xlabel('radius [AU]')
+    plt.ylabel('radius [AU]')
+    plt.annotate('normalized dust density for toyGrid', xy=(.05, 1.02), xycoords='axes fraction')
+

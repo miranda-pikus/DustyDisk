@@ -90,7 +90,9 @@ class Grid():
 
 
 
-def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
+def Initialize_System(radius: np.array, 
+                      sigma_gas: np.array, 
+                      Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
     '''
     Initialize the environment to be handled by DustyDisk package.
     Depends on the user-defined input such as density, temperature, grain size, etc...
