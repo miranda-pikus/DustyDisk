@@ -7,7 +7,7 @@ class Grid():
     class that represents the grid that gets initialized by the user with
     an input radius, gas density, and gas temperature profile
     '''
-    def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size, unit_type):
+    def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size, unit_type, dt=1e8, t_final =1e12):
         '''
         Args: 
             radius (array) : radial profile
@@ -20,10 +20,13 @@ class Grid():
         self.radius = radius 
         self.sigma_gas = sigma_gas 
         self.Tgas = Tgas 
+        self.dt = dt
+        self.t_fin = t_final
+        self.Nt =  int(t_final // dt)
         #self.unit_type = unit_type # unit system (string)
         self.grain_size = grain_size
         # sound speed
-        self.Cs = np.sqrt(Constants.k_B * Tgas * (radius/Constants.AU))**(-0.5) / (mu_gas*Constants.m_H) # cm/s
+        self.Cs = np.sqrt(Constants.k_B * Tgas * (radius/Constants.AU)**(-0.5) / (mu_gas*Constants.m_H)) # cm/s
         # keplerian angular velocity
         Omega_K = np.sqrt(Constants.G * Mstar / radius**3)
         # keplerian velocity
@@ -44,7 +47,30 @@ class Grid():
         v_drift= -2 * eta * self.v_K * self.St / (1 + self.St**2)
 
         return v_drift
-   
+    def dust_density(self):
+        '''
+        Args:
+            dt (float): timestep (s)
+            Nt (int): number of steps
+
+        Returns:
+            sigma_dust (array): normalized evolved dust surface density
+        '''
+        r = self.radius
+        sigma_d = np.ones_like(self.sigma_gas)  
+        
+        v_drift = self.vdrift()
+        for _ in range(self.Nt):
+            F = sigma_d * v_drift
+            dsigma_dt = -1 / r * np.gradient(r * F, r)
+            sigma_d += dsigma_dt * self.dt
+            sigma_d = np.maximum(sigma_d, 1e-20)
+
+        sigma_d /= np.max(sigma_d)
+        return sigma_d
+
+    
+
 
 
 def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
@@ -55,5 +81,5 @@ def Initialize_System(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_ty
         Tgas (array of floats) -- gas temperature 
     Returns: theGrid (Grid) with user-input radius, sigma_gas, Tgas
     '''
-    theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type)
+    theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type,dt=1e9, t_final=1e12)
     return theGrid
