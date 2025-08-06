@@ -1,0 +1,23 @@
+[build-system]
+requires =[
+	"setuptools",
+	"numpy"
+]
+build-backend ="setuptools.build_meta"
+
+[project]
+name ="DustyDisk"
+dynamic =["version"]
+dependencies=[
+	"numpy",
+	"matplotlib,
+	"astropy"
+]
+
+[tool.setuptools.dynamic]
+version= {attr = "orbitize.__version__"}
+
+[tool.setuptools.packages]
+
+find ={}
+
