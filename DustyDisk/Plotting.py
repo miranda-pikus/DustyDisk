@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from Main import Grid
+from DustyDisk.Main import Grid
 import Constants
 plt.style.use('PlotStyling.mplstyle')
 

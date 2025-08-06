@@ -1,6 +1,6 @@
 
 import numpy as np
-import Constants 
+import DustyDisk.Constants as Constants
 
 class Grid():
     '''
