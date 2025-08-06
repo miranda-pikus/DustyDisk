@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
-from DustyDisk.Main import Grid
-import Constants
-plt.style.use('PlotStyling.mplstyle')
+from DustyDisk.Functions import Grid
+import DustyDisk.Constants as Constants
+#plt.style.use('./PlotStyling.mplstyle')
 
 def PlotGasDensity(whichGrid, which_ax):
     which_ax.plot(whichGrid.radius/Constants.AU, whichGrid.sigma_gas, 
