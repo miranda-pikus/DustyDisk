@@ -11,7 +11,7 @@ density distribution of dust for different grain sizes.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption:  Getting Started:
 
    installation
    grid

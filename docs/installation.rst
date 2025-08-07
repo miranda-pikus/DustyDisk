@@ -1,7 +1,7 @@
 .. _installation:
 
 Installation
-+++++++++++++
+===============
 
 This package can be installed as below, irrespective of the operating system.
 
