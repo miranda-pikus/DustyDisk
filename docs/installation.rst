@@ -10,7 +10,7 @@ This package can be installed as below, irrespective of the operating system.
 
 
 
-.. code-block::bash
+.. code-block:: bash
 	
 	$ pip install DustyDisk
 
