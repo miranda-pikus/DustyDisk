@@ -1,4 +1,4 @@
-.. _grid:
+.. _grids:
 
 Class : Grid
 ==============
