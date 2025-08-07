@@ -12,8 +12,10 @@ density distribution of dust for different grain sizes.
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
-   installation.rst
-   grid.rst
+   installation
+   grid
+
+
 
 Indices and tables
 ======================
