@@ -7,7 +7,7 @@ class Grid():
     class that represents the grid that gets initialized by the user with
     an input radius, gas density, and gas temperature profile
     '''
-    def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size, unit_type, dt=1e8, t_final =1e12):
+    def __init__(self, radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,pressure_type='None', unit_type='cgs', dt=1e8, t_final =1e12):
         '''
         Initializes a Grid object
 
@@ -40,6 +40,7 @@ class Grid():
         self.dt = dt
         self.t_fin = t_final
         self.Nt =  int(t_final // dt)
+        self.pressure_type = pressure_type
         #self.unit_type = unit_type # unit system (string)
         self.grain_size = grain_size
         # sound speed
@@ -54,7 +55,11 @@ class Grid():
 
         
         # pressure
-        self.Pressure =self.rho_g * self.Cs **2
+        if pressure_type=='constant':
+            self.Pressure = 0.5* np.ones_like(radius)
+        else:
+            self.Pressure =self.rho_g * self.Cs **2
+
         self.St = (np.pi / 2) * Constants.rho_s * self.grain_size / sigma_gas
         self.dpdr = np.gradient(self.Pressure, self.radius)
 
@@ -91,7 +96,7 @@ class Grid():
 
 def Initialize_System(radius: np.array, 
                       sigma_gas: np.array, 
-                      Tgas, mu_gas, Mstar, grain_size,unit_type='cgs'):
+                      Tgas, mu_gas, Mstar, grain_size,pressure_type='None',unit_type='cgs'):
     '''
     Initialize the environment to be handled by DustyDisk package.
     Depends on the user-defined input such as density, temperature, grain size, etc...
@@ -104,5 +109,5 @@ def Initialize_System(radius: np.array,
     Returns: 
         Grid: object that uses the density and temperature profiles for other calculations
     '''
-    theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,unit_type,dt=1e9, t_final=1e12)
+    theGrid = Grid(radius, sigma_gas, Tgas, mu_gas, Mstar, grain_size,pressure_type,unit_type,dt=1e9, t_final=1e12)
     return theGrid
