@@ -1,5 +1,0 @@
-DustyDisk
-Examples
-anaconda_projects
-dist
-docs
