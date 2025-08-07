@@ -18,6 +18,4 @@ A simple package to see where the dust would be trapped in a disk!
 Indices and tables
 ======================
 
-* :any:`Please refer <grid> to get a detailed version of the main functions in this package.`
-* :ref: 
-* :ref: 
+#. :ref:`Please refer <grid> to get a detailed version of the main functions in this package.`
