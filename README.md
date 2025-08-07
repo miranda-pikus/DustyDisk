@@ -7,4 +7,6 @@ The ```DustyDisk``` package serves as an aide to model and visualize the hydrody
 
 Check out our tutorial jupyter notebook in ```Examples/ExampleTutorial.ipynb``` to get started. Further documentation can be found here: https://dustydisk.readthedocs.io
 
+Be sure to run our test suite in ```tests/``` to make sure there are no problems with the code version you are working with.
+
 [![A rectangular badge, half black half purple containing the text made at Code Astro](https://img.shields.io/badge/Made%20at-Code/Astro-blueviolet.svg)](https://semaphorep.github.io/codeastro/)
