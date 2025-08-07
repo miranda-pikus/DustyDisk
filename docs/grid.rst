@@ -1,9 +1,6 @@
 .. _grids:
 
-Features
-==============
-
-.. automodule:: Functions
+.. automodule:: Functions.py
    :members:
    :undoc-members:
    :show-inheritance:

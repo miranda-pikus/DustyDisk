@@ -78,6 +78,7 @@ class Grid():
         Returns:
             sigma_dust (array): normalized evolved dust surface density
         '''
+        
         r = self.radius
         sigma_d = np.ones_like(self.sigma_gas)  
         
