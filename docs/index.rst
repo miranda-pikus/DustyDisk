@@ -3,11 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-DustyDisk documentation
+DustyDisk
 =======================
 
-A simple package to see where the dust would be trapped in a disk!
-
+Welcome to DustyDisk simple package to see where the dust would be trapped in a disk! You can also explore the drift velocity and 
+density distribution of dust for different grain sizes. 
 
 .. toctree::
    :maxdepth: 2
