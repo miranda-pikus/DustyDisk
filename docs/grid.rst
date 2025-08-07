@@ -1,6 +1,6 @@
 .. _grids:
 
-.. automodule:: Functions.py
+.. automodule:: DustyDisk.functions
    :members:
    :undoc-members:
    :show-inheritance:
