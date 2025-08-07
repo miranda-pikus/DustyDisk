@@ -30,6 +30,3 @@ After cloning the Git repository, run the following commands.
 	$ pip install -r requirements.txt
 	$ pip install -e . --upgrade
 
-.. automodule:: Installation
-   :members:
-
