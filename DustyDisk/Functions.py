@@ -31,7 +31,7 @@ class Grid():
             v_K : keplerian velocity
             rho_g
             Pressure
-            St
+            St: Stoke's parameter
             dpdr : pressure gradient 
         '''
         self.radius = radius 
@@ -77,12 +77,11 @@ class Grid():
         sigma_d = np.ones_like(self.sigma_gas)  
         
         v_drift = self.vdrift()
-        for _ in range(self.Nt):
-            F = sigma_d * v_drift
+        for _ in range(self.Nt): # mass conservation law 
+            F = sigma_d * v_drift # use the flux from dust drift velocity
             dsigma_dt = -1 / r * np.gradient(r * F, r)
             sigma_d += dsigma_dt * self.dt
             sigma_d = np.maximum(sigma_d, 1e-20)
-
         sigma_d /= np.max(sigma_d)
         return sigma_d
 
