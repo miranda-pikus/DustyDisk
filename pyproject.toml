@@ -10,7 +10,8 @@ name ="DustyDisk"
 dynamic =["version"]
 dependencies=[
 	"numpy",
-	"matplotlib"
+	"matplotlib",
+	"sphinx_rtd_theme"
 ]
 
 [tool.setuptools.dynamic]
