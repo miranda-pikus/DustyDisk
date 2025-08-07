@@ -19,8 +19,9 @@ density distribution of dust for different grain sizes.
    grid
 
 
+References
+==========
 
-Indices and tables
-======================
+* This package is mainly motivated by the review lecture notes on the formation of planetary systems by Philip Armitage [Armitage2007]_.
 
-#. :ref:`Please refer <grids> to get a detailed version of the main functions in this package.`
+.. [Armitage2007] Armitage, P. J. (2007). *Lecture notes on the formation and early evolution of planetary systems*. arXiv:astro‑ph/0701485. https://arxiv.org/abs/astro-ph/0701485
