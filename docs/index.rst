@@ -10,8 +10,8 @@ Welcome to DustyDisk simple package to see where the dust would be trapped in a 
 density distribution of dust for different grain sizes. 
 
 .. toctree::
-   :maxdepth: 4
-   :caption: 
+   :maxdepth: 2
+   :caption: Contents:
 
    installation
    grid
