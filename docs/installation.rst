@@ -20,9 +20,8 @@ Make sure to install the requirements such as ``numpy`` and ``matplotlib``.
 For Developers
 ++++++++++++++
 
-``DustyDisk`` is in a rudimentary stage with minimal features. We encourage the community to make user friendly changes to it 
-by installing the package and modify it . Also feel free to send an email, to brainstorm! 
-
+``DustyDisk`` is currently in an early development stage with minimal features. We encourage the community to contribute by installing the package and making improvements.  
+Feel free to send us an email if you want to brainstorm or collaborate!
 After cloning the Git repository, run the following commands.
 
 .. code-block:: bash
