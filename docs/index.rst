@@ -6,8 +6,10 @@
 DustyDisk
 =======================
 
-Welcome to DustyDisk simple package to see where the dust would be trapped in a disk! You can also explore the drift velocity and 
+Welcome to DustyDisk simple package to see where the dust would be trapped in a gaseous disk! You can also explore the drift velocity and 
 density distribution of dust for different grain sizes. 
+
+
 
 .. toctree::
    :maxdepth: 2
@@ -21,4 +23,4 @@ density distribution of dust for different grain sizes.
 Indices and tables
 ======================
 
-#. :ref:`Please refer <_grids> to get a detailed version of the main functions in this package.`
+#. :ref:`Please refer <grids> to get a detailed version of the main functions in this package.`

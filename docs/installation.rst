@@ -3,16 +3,19 @@
 Installation
 ===============
 
+For Users
+++++++++++
+
 This package can be installed as below, irrespective of the operating system.
 
 
 
-.. code-block:: bash
+.. code-block::bash
 	
 	$ pip install DustyDisk
 
 
-.Make sure to install the requirements such as ``numpy`` and ``matplotlib``. 
+Make sure to install the requirements such as ``numpy`` and ``matplotlib``. 
 
 For Developers
 ++++++++++++++
