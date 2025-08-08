@@ -6,16 +6,22 @@
 DustyDisk
 =======================
 
-Welcome to DustyDisk simple package to see where the dust would be trapped in a disk! You can also explore the drift velocity and 
+Welcome to DustyDisk! A simple package to see where the dust would be trapped in a gaseous disk! You can also explore the drift velocity and 
 density distribution of dust for different grain sizes. 
 
+
+
 .. toctree::
-   :maxdepth: 4
-   :caption: Contents:
-   installation.rst
-   grid.rst
+   :maxdepth: 2
+   :caption:  Getting Started:
 
-Indices and tables
-======================
+   installation
+   grid
 
-#. :ref:`Please refer <_grids> to get a detailed version of the main functions in this package.`
+
+References
+==========
+
+* This package is mainly motivated by the review lecture notes on the formation of planetary systems by Philip Armitage [Armitage2007]_.
+
+.. [Armitage2007] Armitage, P. J. (2007). *Lecture notes on the formation and early evolution of planetary systems*. arXiv:astro‑ph/0701485. https://arxiv.org/abs/astro-ph/0701485

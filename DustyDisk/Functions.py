@@ -33,6 +33,9 @@ class Grid():
             Pressure
             St: Stoke's parameter
             dpdr : pressure gradient 
+
+        Returns:
+            Grid (class object)
         '''
         self.radius = radius 
         self.sigma_gas = sigma_gas 
@@ -65,6 +68,14 @@ class Grid():
 
         
     def vdrift(self):
+        '''
+        Args:
+            St (float): Stokes parameter (s)
+            Nt (int): number of steps
+
+        Returns:
+            sigma_dust (array): normalized evolved dust surface density
+        '''
         eta = -0.5 *self.radius* self.dpdr / (self.rho_g * self.v_K**2) 
         v_drift= -2 * eta * self.v_K * self.St / (1 + self.St**2)
 
@@ -78,6 +89,7 @@ class Grid():
         Returns:
             sigma_dust (array): normalized evolved dust surface density
         '''
+
         r = self.radius
         sigma_d = np.ones_like(self.sigma_gas)  
         
