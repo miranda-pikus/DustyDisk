@@ -6,7 +6,7 @@
 DustyDisk
 =======================
 
-Welcome to DustyDisk simple package to see where the dust would be trapped in a gaseous disk! You can also explore the drift velocity and 
+Welcome to DustyDisk! A simple package to see where the dust would be trapped in a gaseous disk! You can also explore the drift velocity and 
 density distribution of dust for different grain sizes. 
 
 
